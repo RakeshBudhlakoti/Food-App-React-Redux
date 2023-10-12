@@ -1,29 +1,61 @@
+import React, { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-  //Local State Variables
+  // Local State Variables
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [searchText, setSearchText] = useState([]);
+  const [listOfFilteredRestaurants, setListOfFilteredRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
+  // Fetch data when the component mounts
   useEffect(() => {
     fetchData();
   }, []);
 
+  // Function to fetch restaurant data from the API
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4594965&lng=77.0266383&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    for(let i = 0; i < json.data.cards.length ; i++){
-      if(json.data.cards[i].card.card.gridElements && json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants != null && json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants != ""){
-          let finalData =  json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants;
-          setListOfRestaurants(finalData)
+    try {
+      const data = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6101645&lng=77.20674269999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
+      const json = await data.json();
+
+      // const restaurant_list = "restaurant_grid_listing";
+      // const restaurantCard = jsonData?.data?.cards.find((card) => card.card.card.id === restaurant_list);
+      // let finalData = restaurantCard?.card?.card?.gridElements.infoWithStyle.restaurants || [];
+      // setListOfRestaurants(finalData);
+      //setListOfFilteredRestaurants(finalData);
+      for (let i = 0; i < json.data.cards.length; i++) {
+        let responseQuery = json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants;
+        if (responseQuery) {
+          let finalData = responseQuery;
+          setListOfRestaurants(finalData);
+          setListOfFilteredRestaurants(finalData);
+        }
       }
-  }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
-  //Conditional Rendering
+
+  // Function to handle restaurant filtering based on search text
+  const handleSearch = () => {
+    const filteredRestaurants = listOfRestaurants.filter((res) => {
+      const restaurantName = res.info.name.toLowerCase();
+      return restaurantName.includes(searchText.toLowerCase());
+    });
+    setListOfFilteredRestaurants(filteredRestaurants);
+  };
+
+  // Function to handle filtering restaurants with a rating of 4+
+  const handleFilterRating = () => {
+    const filteredList = listOfRestaurants.filter(
+      (res) => res.info.avgRating > 4
+    );
+    setListOfFilteredRestaurants(filteredList);
+  };
+
   return (
     <div className="body">
       <div className="container">
@@ -44,21 +76,8 @@ const Body = () => {
                   }}
                   required
                 />
-                <button
-                  onClick={() => {
-                    //// console.log(searchText);
-                    //// console.log(listOfRestaurants);
-                    const filteredRestaurants = listOfRestaurants.filter(
-                      (res) => {
-                        const restraName = res.info.name.toLowerCase();
-                        return restraName.includes(searchText.toLowerCase());
-                      }
-                    );
-                    console.log(filteredRestaurants);
-                    setListOfRestaurants(filteredRestaurants);
-                  }}
-                >
-                  <i className="fa fa-search"></i>
+                <button onClick={handleSearch}>
+                  <i className="fa fa-search"></i> {/* Search icon */}
                 </button>
               </div>
             </div>
@@ -66,22 +85,17 @@ const Body = () => {
               <button
                 type="button"
                 className="btn btn-info filter-btn"
-                onClick={() => {
-                  const filteredList = listOfRestaurants.filter(
-                    (res) => res.info.avgRating > 4
-                  );
-                  setListOfRestaurants(filteredList);
-                }}
+                onClick={handleFilterRating}
               >
                 Rating 4+
               </button>
             </div>
             <div className="res-container">
               {listOfRestaurants.length === 0 ? (
-                <Shimmer />
+                <Shimmer /> /* Display a loading shimmer effect while fetching data */
               ) : (
                 <div className="res-body">
-                  {listOfRestaurants.map((restaurant) => (
+                  {listOfFilteredRestaurants.map((restaurant) => (
                     <RestaurantCard
                       key={restaurant.info.id}
                       resData={restaurant}
@@ -97,4 +111,5 @@ const Body = () => {
     </div>
   );
 };
+
 export default Body;

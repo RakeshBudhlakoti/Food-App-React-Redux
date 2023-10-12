@@ -69,19 +69,30 @@
   font-weight: bold;
   margin-bottom: 21px;
 }
+
 .shimmerContainer {
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content:  flex-start ;
   align-items: center;
   margin: 20px auto;
   padding: 10px;
   display: flex;
 }
 .shimmer-card {
-  width: 20%;
-  height: 300px;
-  background-color: #f0f0f0;
-  margin: 20px;
+  width: 18%;
+  height: 280px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  margin: 15px 11px;
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 .login {
   padding: 5px;
@@ -153,3 +164,106 @@ span.rating {
   margin: auto;
   max-width: 500px;
 }
+
+
+/******** Header CSS ********************************/
+/* Reset some default styling */
+body, ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333; /* Change the background color to your preference */
+  color: #fff; /* Change text color to your preference */
+  padding: 15px 20px;
+}
+
+/* Style the logo */
+.logo {
+  width: 100px; /* Adjust the width as needed */
+  height: auto;
+}
+
+/* Style the navigation links */
+.nav-items ul {
+  list-style: none;
+  display: flex;
+}
+
+.nav-items li {
+  margin-right: 20px; /* Adjust the spacing as needed */
+}
+
+/* Style the navigation links */
+.nav-items a {
+  text-decoration: none;
+  color: #fff; /* Change link color to your preference */
+  font-weight: 500; /* Adjust the font weight as needed */
+  transition: color 0.3s;
+}
+
+.nav-items a:hover {
+  color: #ff5733; /* Change link color on hover to your preference */
+}
+
+/* Style the login button */
+.login {
+  background-color: #ff5733; /* Change button background color to your preference */
+  color: #fff; /* Change button text color to your preference */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px; /* Add rounded corners to the button */
+  cursor: pointer;
+}
+
+.login:hover {
+  background-color: #ff834f; /* Change button background color on hover to your preference */
+}
+
+/********** Footer CSS ****************/
+
+
+
+/* Style the footer */
+.footer {
+  background-color: #333; /* Change the background color to your preference */
+  color: #fff; /* Change text color to your preference */
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Style the footer content */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Adjust the maximum width as needed */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Style the footer logo */
+.footer-logo img {
+  width: 100px; /* Adjust the width as needed */
+  height: auto;
+}
+
+/* Style the footer info */
+.footer-info p {
+  margin: 10px 0;
+}
+
+.footer-info a {
+  color: #ff5733; /* Change link color to your preference */
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
