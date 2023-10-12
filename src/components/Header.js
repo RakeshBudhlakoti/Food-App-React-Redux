@@ -15,16 +15,16 @@ const Header = () => {
           <li>About</li>
           <li>Contact</li>
           <li>Cart</li>
-          <ll>
+          <li>
             <button
-              class="login"
+              className="login"
               onClick={() => {
                 setBtnNameReact("Logout");
               }}
             >
               {btnNameReact}
             </button>
-          </ll>
+          </li>
         </ul>
       </div>
     </div>
