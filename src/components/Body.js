@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { RESTRA_LIST_URL } from "../utils/constants";
 
 const Body = () => {
   // Local State Variables
@@ -16,17 +17,14 @@ const Body = () => {
   // Function to fetch restaurant data from the API
   const fetchData = async () => {
     try {
-      const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6101645&lng=77.20674269999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
+      const data = await fetch(RESTRA_LIST_URL);
       const json = await data.json();
-
-      // const restaurant_list = "restaurant_grid_listing";
-      // const restaurantCard = jsonData?.data?.cards.find((card) => card.card.card.id === restaurant_list);
-      // let finalData = restaurantCard?.card?.card?.gridElements.infoWithStyle.restaurants || [];
-      // setListOfRestaurants(finalData);
-      //setListOfFilteredRestaurants(finalData);
-      for (let i = 0; i < json.data.cards.length; i++) {
+      const restaurant_list = "restaurant_grid_listing";
+      const restaurantCard = json?.data?.cards.find((card) => card.card.card.id === restaurant_list);
+      let finalData = restaurantCard?.card?.card?.gridElements.infoWithStyle.restaurants || [];
+      setListOfRestaurants(finalData);
+      setListOfFilteredRestaurants(finalData);
+      /*for (let i = 0; i < json.data.cards.length; i++) {
         let responseQuery = json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants;
         if (responseQuery) {
           let finalData = responseQuery;
@@ -34,6 +32,7 @@ const Body = () => {
           setListOfFilteredRestaurants(finalData);
         }
       }
+      */
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -96,10 +95,9 @@ const Body = () => {
               ) : (
                 <div className="res-body">
                   {listOfFilteredRestaurants.map((restaurant) => (
-                    <RestaurantCard
-                      key={restaurant.info.id}
-                      resData={restaurant}
-                    />
+                    
+                      <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+                    
                   ))}
                 </div>
               )}

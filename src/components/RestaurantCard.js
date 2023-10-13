@@ -1,5 +1,6 @@
 import React from 'react';
 import { CDN_URL } from '../utils/constants';
+import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ resData }) => {
   if (!resData) {
@@ -7,6 +8,7 @@ const RestaurantCard = ({ resData }) => {
   }
 
   const {
+    id,
     cloudinaryImageId,
     name,
     areaName,
@@ -15,7 +17,7 @@ const RestaurantCard = ({ resData }) => {
     avgRating,
     totalRatingsString,
     sla,
-  } = resData.info;
+  } = resData.info || {};
 
   const truncatedCuisines = cuisines.join(', ').substring(0, 20) + '...';
 
@@ -34,6 +36,13 @@ const RestaurantCard = ({ resData }) => {
         <h5>
           <span className="rating">{avgRating}</span> ({totalRatingsString})
         </h5>
+        <div className="orderNow-button">
+          
+        <Link to={"/restaurants/" + id} >
+          <button>Order Now</button>
+          </Link>
+          </div>
+          
       </div>
     </div>
   );
