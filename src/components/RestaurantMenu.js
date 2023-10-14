@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CDN_URL,RESTRA_CDN_URL,MENU_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 const RestaurantMenu = () => {
   const [restaurantInfo, setRestaurantInfo] = useState(null);
@@ -51,6 +51,8 @@ const RestaurantMenu = () => {
 
   return (
     <div className="restaurant-page">
+      <Link className="previous" to="/">&laquo; Back</Link>
+      
       <div className="restaurant-info">
         <div className="restaurant-image">
           <img

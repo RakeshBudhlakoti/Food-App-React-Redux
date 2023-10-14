@@ -19,12 +19,12 @@ const Body = () => {
     try {
       const data = await fetch(RESTRA_LIST_URL);
       const json = await data.json();
-      const restaurant_list = "restaurant_grid_listing";
-      const restaurantCard = json?.data?.cards.find((card) => card.card.card.id === restaurant_list);
-      let finalData = restaurantCard?.card?.card?.gridElements.infoWithStyle.restaurants || [];
-      setListOfRestaurants(finalData);
-      setListOfFilteredRestaurants(finalData);
-      /*for (let i = 0; i < json.data.cards.length; i++) {
+      //const restaurant_list = "restaurant_grid_listing";
+      //const restaurantCard = json?.data?.cards.find((card) => card.card.card.id === restaurant_list);
+      //let finalData = restaurantCard?.card?.card?.gridElements.infoWithStyle.restaurants || [];
+      //setListOfRestaurants(finalData);
+      //setListOfFilteredRestaurants(finalData);
+      for (let i = 0; i < json.data.cards.length; i++) {
         let responseQuery = json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants;
         if (responseQuery) {
           let finalData = responseQuery;
@@ -32,7 +32,7 @@ const Body = () => {
           setListOfFilteredRestaurants(finalData);
         }
       }
-      */
+      
     } catch (error) {
       console.error("Error fetching data:", error);
     }

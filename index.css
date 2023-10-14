@@ -427,7 +427,7 @@ body, ul {
 .restaurant-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
   margin: 20px;
 }
@@ -553,5 +553,20 @@ body, ul {
 }
 .card a {
   text-decoration: none;
+  color: black;
+}
+/*************************Back Button*******************************/
+
+.previous {
+  color: #fff;
+  background-color: #ff5733;
+  padding: 11px 48px;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.previous:hover {
+  background-color: #ddd;
   color: black;
 }
