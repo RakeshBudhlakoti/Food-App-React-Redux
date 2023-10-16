@@ -1,104 +1,127 @@
-import React, { useState, useEffect } from "react";
-import { CDN_URL,RESTRA_CDN_URL,MENU_API } from "../utils/constants";
+import { CDN_URL, RESTRA_CDN_URL } from "../utils/constants";
+import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import vegImage from '../images/veg.jpeg';
+import nonVegImage from '../images/non-veg.jpeg';
 
 const RestaurantMenu = () => {
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
-  const [itemCards,setItemCards] = useState(null);
-  const [error, setError] = useState(null);
+  const { resId } = useParams();
+  const resInfo = useRestaurantMenu(resId);
 
-  const {resId} = useParams();
+  const [isVeg, setIsVeg] = useState(true); // State for Veg/Non-Veg toggle
+  const [itemCards, setItemCards] = useState(null); // State for restaurant menu items
+  const [itemCardsFiltered, setItemCardsFiltered] = useState(null); // State for restaurant menu items cloned for fiterator
 
+  console.log(isVeg);
   useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    try {
-      const response = await fetch(MENU_API+resId+"&catalog_qa=undefined&submitAction=ENTER");
-
-      const json = await response.json();
-
-      const restaurantData = json.data?.cards[0]?.card?.card?.info;
-
-      if (restaurantData) {
-        setRestaurantInfo(restaurantData);
-      } else {
-        throw new Error("Restaurant data not found in response.");
-      }
-      const itemCardsData = (json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card.itemCards)? json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card.itemCards :json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card.itemCards;
-
-      if (!itemCardsData) {
-        throw new Error("Item menu data not found in response.");
-      }
+    // Fetch and set menu items when `resInfo` changes
+    if (resInfo) {
+      const itemCardsData =
+        resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+          ?.card.itemCards ||
+        resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+          ?.card.itemCards;
       setItemCards(itemCardsData);
-      
-    } catch (error) {
-      console.error("Error fetching restaurant data:", error);
-      setError("Failed to fetch restaurant data. Please try again later.");
+      setItemCardsFiltered(itemCardsData);
+    }
+  }, [resInfo]);
+
+  const handleToggle = () => {
+    setIsVeg(!isVeg); // Toggle Veg/Non-Veg state
+    console.log("isVeg " + isVeg);
+    if (isVeg) {
+      setItemCardsFiltered(
+        itemCards.filter((item) => item.card.info.isVeg != 1)
+      );
+    } else {
+      setItemCardsFiltered(
+        itemCards.filter((item) => item.card.info.isVeg === 1)
+      );
     }
   };
 
-  if (error) {
-    return <div className="error-message">{error}</div>;
+  if (resInfo === null) {
+    return <Shimmer />; // Show loading shimmer while data is being fetched
   }
 
-  if (restaurantInfo === null) {
-    return <Shimmer />;
-  }
+  const restaurantData = resInfo.cards[0]?.card?.card?.info;
 
   return (
     <div className="restaurant-page">
-      <Link className="previous" to="/">&laquo; Back</Link>
-      
+      <Link className="previous" to="/">
+        &laquo; Back
+      </Link>
+
       <div className="restaurant-info">
         <div className="restaurant-image">
           <img
-            src={CDN_URL+restaurantInfo.cloudinaryImageId}
-            alt={restaurantInfo.name}
+            src={`${CDN_URL}${restaurantData?.cloudinaryImageId}`}
+            alt={restaurantData?.name}
           />
         </div>
         <div className="restaurant-details">
-          <h1 className="restaurant-name">{restaurantInfo.name}</h1>
+          <h1 className="restaurant-name">{restaurantData?.name}</h1>
           <p className="restaurant-rating">
-            <b>Avg Rating:</b> {restaurantInfo.avgRating}
+            <b>Avg Rating:</b> {restaurantData?.avgRating}
           </p>
           <p className="restaurant-ratings">
-            <b>Total Ratings:</b> {restaurantInfo.totalRatingsString}
+            <b>Total Ratings:</b> {restaurantData?.totalRatingsString}
           </p>
           <p className="restaurant-delivery-time">
-            <b>Delivery Time:</b> {restaurantInfo.sla.slaString} (
-            {restaurantInfo.expectationNotifiers[0].text})
+            <b>Delivery Time:</b> {restaurantData?.sla.slaString} (
+            {restaurantData?.expectationNotifiers
+              ? restaurantData?.expectationNotifiers[0]?.text
+              : ""}
+            )
           </p>
           <p className="restaurant-cuisines">
-            <b>Cuisines:</b> {restaurantInfo.cuisines.join(", ")}
+            <b>Cuisines:</b> {restaurantData?.cuisines?.join(", ")}
           </p>
           <p className="restaurant-cost">
-            <b>Cost for Two:</b> {restaurantInfo.costForTwoMessage}
+            <b>Cost for Two:</b> {restaurantData?.costForTwoMessage}
           </p>
           <p className="restaurant-address">
-            <b>Address:</b> {restaurantInfo.labels[1].message},{" "}
-            {restaurantInfo.city}
+            <b>Address:</b> {restaurantData?.labels[1]?.message},{" "}
+            {restaurantData?.city}
           </p>
         </div>
       </div>
 
       <div className="restaurant-menu">
         <h2 className="menu-heading">Menu</h2>
+        <div className="veg-non-veg-slider">
+          <label className={`option ${isVeg ? "selected" : ""}`}>Veg</label>
+          <div className="slider" onClick={handleToggle}>
+            <div className={`slider-knob ${isVeg ? "veg" : "non-veg"}`}></div>
+          </div>
+          <label className={`option ${isVeg ? "" : "selected"}`}>Non-Veg</label>
+        </div>
         <ul className="menu-list">
-          {itemCards.map((item, index) => (
+          {itemCardsFiltered?.map((item) => (
             <li key={item.card.info.id} className="menu-item">
               <img
-                src={RESTRA_CDN_URL + item.card.info.imageId}
+                src={`${RESTRA_CDN_URL}${item.card.info.imageId}`}
                 alt={item.card.info.name}
                 className="menu-item-image"
               />
               <div className="menu-item-details">
                 <h3 className="item-name">{item.card.info.name}</h3>
                 <p className="item-description">{item.card.info.description}</p>
-                <span className="item-price">₹{(item.card.info.price)?item.card.info.price/100:item.card.info.defaultPrice/100}</span>
+                <span className="item-price">
+                  ₹
+                  {item.card.info.price
+                    ? item.card.info.price / 100
+                    : item.card.info.defaultPrice / 100}
+                </span>
+                <p>
+                  <span>
+                   
+                   {item.card.info.isVeg ?  <img className="veg-image" src={vegImage} alt=""/> :  <img className="nonveg-image" src={nonVegImage} alt=""/>}
+
+                  </span>
+                </p>
               </div>
             </li>
           ))}

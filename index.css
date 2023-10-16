@@ -272,7 +272,6 @@ body, ul {
 
 /* About Us Container */
 .about-us-container {
-  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
@@ -570,3 +569,88 @@ body, ul {
   background-color: #ddd;
   color: black;
 }
+ /************************* Team Pages****************************/
+
+ .team-cards-container {
+  display: flex;
+  justify-content: space-around; /* Adjust this as needed to control spacing */
+  flex-wrap: wrap; /* Wrap cards to the next row when they don't fit */
+}
+
+/* Adjust the styles for TeamCard as needed */
+.team-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: transform 0.2s;
+  margin: 10px;
+  flex: 0 0 calc(20% - 20px); /* Adjust width as needed */
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+}
+
+img.team-card__image {
+  border-radius: 50%;
+  height: 150px;
+}
+
+/*****Toggle Button ********************************/
+
+.veg-non-veg-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option {
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.option.selected {
+  background-color: #10bc13; /* Green for Veg */
+  color: #fff;
+}
+
+.slider {
+  width: 50px;
+  height: 26px;
+  background-color: #ccc;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 16px;
+  transition: background-color 0.2s;
+}
+
+.slider-knob {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.slider-knob.veg {
+  transform: translateX(0);
+}
+
+.slider-knob.non-veg {
+  transform: translateX(26px);
+}
+
+.slider:hover {
+  background-color: #ddd;
+}
+
+.veg-image, .nonveg-image {
+  height: 30px;
+}
+
+

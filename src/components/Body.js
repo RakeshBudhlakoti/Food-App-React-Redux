@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { RESTRA_LIST_URL } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // Local State Variables
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [listOfFilteredRestaurants, setListOfFilteredRestaurants] = useState([]);
+  const [listOfFilteredRestaurants, setListOfFilteredRestaurants] = useState(
+    []
+  );
   const [searchText, setSearchText] = useState("");
 
   // Fetch data when the component mounts
@@ -25,14 +28,14 @@ const Body = () => {
       //setListOfRestaurants(finalData);
       //setListOfFilteredRestaurants(finalData);
       for (let i = 0; i < json.data.cards.length; i++) {
-        let responseQuery = json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants;
+        let responseQuery =
+          json.data.cards[i].card.card.gridElements.infoWithStyle.restaurants;
         if (responseQuery) {
           let finalData = responseQuery;
           setListOfRestaurants(finalData);
           setListOfFilteredRestaurants(finalData);
         }
       }
-      
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -55,6 +58,15 @@ const Body = () => {
     setListOfFilteredRestaurants(filteredList);
   };
 
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false)
+    return (
+      <div className="offline-message">
+        <h1>Your internet connection is not available.</h1>
+        <h2>Please check your network connection and try again.</h2>
+      </div>
+    );
   return (
     <div className="body">
       <div className="container">
@@ -95,9 +107,10 @@ const Body = () => {
               ) : (
                 <div className="res-body">
                   {listOfFilteredRestaurants.map((restaurant) => (
-                    
-                      <RestaurantCard key={restaurant.info.id} resData={restaurant} />
-                    
+                    <RestaurantCard
+                      key={restaurant.info.id}
+                      resData={restaurant}
+                    />
                   ))}
                 </div>
               )}
