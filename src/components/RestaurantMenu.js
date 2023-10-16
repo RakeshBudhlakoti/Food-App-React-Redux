@@ -10,40 +10,34 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
 
-  const [isVeg, setIsVeg] = useState(true); // State for Veg/Non-Veg toggle
-  const [itemCards, setItemCards] = useState(null); // State for restaurant menu items
-  const [itemCardsFiltered, setItemCardsFiltered] = useState(null); // State for restaurant menu items cloned for fiterator
+  const [itemCards, setItemCards] = useState(null);
+  const [itemCardsFiltered, setItemCardsFiltered] = useState([]);
+  const [filter, setFilter] = useState("all");
 
-  console.log(isVeg);
   useEffect(() => {
-    // Fetch and set menu items when `resInfo` changes
     if (resInfo) {
       const itemCardsData =
-        resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-          ?.card.itemCards ||
-        resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-          ?.card.itemCards;
+        resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card.itemCards ||
+        resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card.itemCards;
       setItemCards(itemCardsData);
       setItemCardsFiltered(itemCardsData);
     }
   }, [resInfo]);
 
-  const handleToggle = () => {
-    setIsVeg(!isVeg); // Toggle Veg/Non-Veg state
-    console.log("isVeg " + isVeg);
-    if (isVeg) {
-      setItemCardsFiltered(
-        itemCards.filter((item) => item.card.info.isVeg != 1)
-      );
+  const handleToggle = (newFilter) => {
+    setFilter(newFilter);
+
+    if (newFilter === 'veg') {
+      setItemCardsFiltered(itemCards.filter((item) => item.card.info.isVeg === 1));
+    } else if (newFilter === 'non-veg') {
+      setItemCardsFiltered(itemCards.filter((item) => item.card.info.isVeg !== 1));
     } else {
-      setItemCardsFiltered(
-        itemCards.filter((item) => item.card.info.isVeg === 1)
-      );
+      setItemCardsFiltered(itemCards);
     }
   };
 
   if (resInfo === null) {
-    return <Shimmer />; // Show loading shimmer while data is being fetched
+    return <Shimmer />;
   }
 
   const restaurantData = resInfo.cards[0]?.card?.card?.info;
@@ -91,13 +85,26 @@ const RestaurantMenu = () => {
 
       <div className="restaurant-menu">
         <h2 className="menu-heading">Menu</h2>
-        <div className="veg-non-veg-slider">
-          <label className={`option ${isVeg ? "selected" : ""}`}>Veg</label>
-          <div className="slider" onClick={handleToggle}>
-            <div className={`slider-knob ${isVeg ? "veg" : "non-veg"}`}></div>
-          </div>
-          <label className={`option ${isVeg ? "" : "selected"}`}>Non-Veg</label>
-        </div>
+        <div className="toggle-buttons">
+      <button
+        className={`toggle-button ${filter === "all" ? "selected" : ""}`}
+        onClick={() => handleToggle("all")}
+      >
+        All
+      </button>
+      <button
+        className={`toggle-button ${filter === "veg" ? "selected" : ""}`}
+        onClick={() => handleToggle("veg")}
+      >
+        Veg
+      </button>
+      <button
+        className={`toggle-button ${filter === "non-veg" ? "selected" : ""}`}
+        onClick={() => handleToggle("non-veg")}
+      >
+        Non-Veg
+      </button>
+    </div>
         <ul className="menu-list">
           {itemCardsFiltered?.map((item) => (
             <li key={item.card.info.id} className="menu-item">

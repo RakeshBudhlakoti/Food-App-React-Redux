@@ -599,55 +599,40 @@ img.team-card__image {
 
 /*****Toggle Button ********************************/
 
-.veg-non-veg-slider {
+.toggle-buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 2px solid #ccc;
+
+  overflow: hidden;
+  max-width: 220px;
+  background-color: #f3f3f3;
 }
 
-.option {
-  padding: 8px 16px;
+.toggle-button {
+  flex: 1;
+  padding: 10px 0;
+  text-align: center;
   cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #fff;
+  color: #333;
+  font-weight: 600;
 }
 
-.option.selected {
-  background-color: #10bc13; /* Green for Veg */
+.toggle-button:hover {
+  background-color: #333;
   color: #fff;
 }
 
-.slider {
-  width: 50px;
-  height: 26px;
-  background-color: #ccc;
-  border-radius: 13px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin: 0 16px;
-  transition: background-color 0.2s;
+.selected {
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: 700;
 }
 
-.slider-knob {
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: transform 0.2s;
-}
+/* Individual button styling */
 
-.slider-knob.veg {
-  transform: translateX(0);
-}
 
-.slider-knob.non-veg {
-  transform: translateX(26px);
-}
-
-.slider:hover {
-  background-color: #ddd;
-}
 
 .veg-image, .nonveg-image {
   height: 30px;
