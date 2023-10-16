@@ -20,7 +20,7 @@ function Header() {
       <div className="nav-items">
         <ul>
           <li>
-            Online Status:{onlineStatus ? <span>&#128994;</span> : <span>&#128308;</span>}
+            Online Status..:{onlineStatus ? <span>&#128994;</span> : <span>&#128308;</span>}
           </li>
           <li>
             <Link to="/">Home</Link>
