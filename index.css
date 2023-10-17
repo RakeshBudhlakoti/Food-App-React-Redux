@@ -32,7 +32,7 @@
   width: 18%;
   margin: 15px 11px;
   padding: 15px;
-  transition: all .3s;
+  transition: all 0.3s;
   box-shadow: 0 4px 8px #0003;
 }
 
@@ -73,7 +73,7 @@
 
 .shimmerContainer {
   flex-wrap: wrap;
-  justify-content:  flex-start ;
+  justify-content: flex-start;
   align-items: center;
   margin: 20px auto;
   padding: 10px;
@@ -99,7 +99,8 @@
   padding: 5px;
   background-color: beige;
 }
-h4, h5 {
+h4,
+h5 {
   margin: 0;
   padding: 5px 0;
   font-size: 12px;
@@ -109,11 +110,11 @@ h5 {
 }
 
 .btn {
-  color: #c66464;
+  color: #ff5733;
   cursor: pointer;
   text-align: center;
   background-color: #0000;
-  border: 2px solid #da8484;
+  border: 2px solid #ff5733;
   align-self: center;
   margin-left: 8px;
   padding: 7px;
@@ -121,12 +122,12 @@ h5 {
   display: flex;
 }
 .btn:hover {
-  background-color: #da8484; /* Change background color on hover */
+  background-color: #ff5733; /* Change background color on hover */
   color: #ffffff; /* Change text color on hover */
 }
 
 span.rating {
-  background-color: #db7c38;
+  background-color: #ff5733;
   color: white;
   padding: 1px 8px;
 }
@@ -144,7 +145,7 @@ span.rating {
   float: left;
   width: 20%;
   padding: 10px;
-  background: #2196f3;
+  background: #ff5733;
   color: white;
   font-size: 17px;
   border: 1px solid grey;
@@ -153,7 +154,7 @@ span.rating {
 }
 
 .Search .example button:hover {
-  background: #0b7dda;
+  background: #e2320a;
 }
 
 .Search .example::after {
@@ -166,10 +167,10 @@ span.rating {
   max-width: 500px;
 }
 
-
 /******** Header CSS ********************************/
 /* Reset some default styling */
-body, ul {
+body,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -227,8 +228,6 @@ body, ul {
 }
 
 /********** Footer CSS ****************/
-
-
 
 /* Style the footer */
 .footer {
@@ -417,10 +416,8 @@ body, ul {
   text-decoration: underline;
 }
 
-
 /******************************** restaurant menu page ********************************/
 /* Styles for the overall restaurant page */
-
 
 /* Styles for the overall restaurant page */
 .restaurant-page {
@@ -457,7 +454,6 @@ body, ul {
 }
 
 /* Rest of the CSS for restaurant details and menu stays the same */
-
 
 .restaurant-page .restaurant-name {
   font-size: 24px;
@@ -508,8 +504,8 @@ body, ul {
 }
 
 .restaurant-page .menu-item-image {
-  max-width: 100px;
-  max-height: 100px;
+  /* max-width: 100px;
+  max-height: 100px; */
   object-fit: cover;
   border-radius: 8px 0 0 8px;
 }
@@ -569,9 +565,9 @@ body, ul {
   background-color: #ddd;
   color: black;
 }
- /************************* Team Pages****************************/
+/************************* Team Pages****************************/
 
- .team-cards-container {
+.team-cards-container {
   display: flex;
   justify-content: space-around; /* Adjust this as needed to control spacing */
   flex-wrap: wrap; /* Wrap cards to the next row when they don't fit */
@@ -625,17 +621,237 @@ img.team-card__image {
 }
 
 .selected {
-  background-color: #4caf50;
+  background-color: #ff5733;
   color: #fff;
   font-weight: 700;
 }
 
 /* Individual button styling */
-
-
-
-.veg-image, .nonveg-image {
+.veg-image,.nonveg-image {
   height: 30px;
+}
+/******** Add Button ********************************/
+
+
+.button-counter {
+  text-align: center;
+  margin: 20px;
+}
+
+ 
+
+.button-counter button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #0077b6;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 18px;
+  font-size: 13px;
+  transition: background-color .3s;
+  font-weight: bold;
+}
+ 
+
+.button-counter button:hover {
+  background-color: #005a98;
+}
+
+ 
+
+.button-counter .counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ 
+
+.button-counter .counter button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #0077b6;
+  border: none;
+  border-radius: 4px;
+  margin: 0 10px;
+  padding: 3px 10px;
+  font-size: 18px;
+  transition: background-color .3s;
+}
+
+ 
+
+.button-counter .counter button:hover {
+  background-color: #005a98;
+}
+
+ 
+
+.button-counter .counter span {
+  font-size: 17px;
+
+}
+
+/********** Sidebar****************/
+
+/* CartSidebar.css */
+
+.cart-sidebar {
+ 
+  top: 0;
+  right: -300px; /* Off-screen initially */
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -1px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: right 0.3s;
+}
+
+.cart-header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
+
+/*********************************************/
+
+/* RestaurantPage.css */
+
+.restaurant-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.restaurant-info {
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.restaurant-menu {
+  width: 60%;
+}
+
+.menu-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+toggle-buttons {
+  display: flex;
+}
+
+.toggle-button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #0056b3;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+item-description {
+  color: #666;
+  margin-bottom: 5px;
+}
+
+item-price {
+  font-weight: bold;
+}
+
+/* Cart Sidebar Styles */
+
+.cart-sidebar {
+  width: 40%;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cart-items {
+  margin-top: 20px;
+}
+
+/* RestaurantPage.css */
+
+/* Other styles you might already have */
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.cart-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.cart-table tr:hover {
+  background-color: #f5f5f5;
+}
