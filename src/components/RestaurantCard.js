@@ -31,22 +31,21 @@ const RestaurantCard = ({ resData }) => {
             alt="Restaurant Image"
           />
 
-          <h4>
+          <h4 className="restraTitle">
             <b>{name}</b>
           </h4>
           <h5>{`${areaName} (${sla.slaString})`}</h5>
           <h5>{truncatedCuisines}</h5>
-          <h5>{costForTwo}</h5>
-          <h5>
-            <span className="rating">{avgRating}</span> ({totalRatingsString})
-          </h5>
-          {/* 
-        <div className="orderNow-button">
-          
-        <Link to={"/restaurants/" + id} >
-          <button>Order Now</button>
-          </Link>
-          </div>*/}
+          <span className="allDescription">
+            <p> 
+            <span className={(avgRating >= 4) ? "rating" : "rating1"}><i class="fa fa-star"></i>&nbsp;{avgRating}</span>
+            
+            </p>
+            <p>•</p>
+            <p>{sla.lastMileTravelString}</p>
+            <p>•</p>
+            <p>{costForTwo}</p>
+          </span>
         </div>
       </Link>
     </div>

@@ -205,6 +205,7 @@ const RestaurantMenu = () => {
             ))}
           </ul>
         </div>
+
         <div className="cart-sidebar">
           <div className="cart-header">
             <h2>Your Cart</h2>
