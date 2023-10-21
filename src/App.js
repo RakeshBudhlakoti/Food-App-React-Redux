@@ -6,7 +6,7 @@ import React,{ lazy, Suspense } from "react";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
-import RestaurantMenu from "./components/RestaurantMenu";
+import RestaurantMenu from "./components/Restaurant Detail Page/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 const Grocery = lazy(() => import("./components/Grocery")); // lazy used for use bundle 

@@ -10,6 +10,7 @@ const useOnlineStatus = () => {
         setOnlineStatus(true);
       });
   });
+
   return onlineStatus;
 };
 export default useOnlineStatus;

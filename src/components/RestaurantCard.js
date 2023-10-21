@@ -38,7 +38,7 @@ const RestaurantCard = ({ resData }) => {
           <h5>{truncatedCuisines}</h5>
           <span className="allDescription">
             <p> 
-            <span className={(avgRating >= 4) ? "rating" : "rating1"}><i class="fa fa-star"></i>&nbsp;{avgRating}</span>
+            <span className={(avgRating >= 4) ? "rating" : "rating1"}><i className="fa fa-star"></i>&nbsp;{avgRating}</span>
             
             </p>
             <p>•</p>

@@ -16,9 +16,10 @@ function Header() {
     
     <div className="header">
       <div className="logo-container">
-        <img className="logo" src={LOGO_URL} alt="FoodVillage" />
+      <Link to="/"> <img className="logo" src={LOGO_URL} alt="FoodVillage" /> </Link>
       </div>
       <div className="nav-items">
+        
         <ul>
 
           <li>

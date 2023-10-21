@@ -2,17 +2,20 @@ import { LOGO_URL } from "../utils/constants";
 
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-logo">
-          <img src={LOGO_URL} alt="FoodVillage" />
-        </div>
-        <div className="footer-info">
-          <p>&copy; 2023 FoodVillage. All rights reserved.</p>
-          <p>Contact us at <a href="mailto:info@foodvillage.com">info@foodvillage.com</a></p>
-        </div>
-      </div>
-    </footer>
+    <div className="footer">
+      Created By<i className="fa fa-solid fa-heart"></i>
+      <a
+        href="https://www.linkedin.com/in/rakesh-budhlakoti/"
+        target="_blank"
+        title="Rakesh Budhlakoti's Linkedin Profile"
+      >
+        Rakesh Budhlakoti
+      </a>
+      <i className="fa fa-solid fa-copyright"></i>2023
+      <strong>
+        Food<span>Villa</span>
+      </strong>
+    </div>
   );
 }
 
