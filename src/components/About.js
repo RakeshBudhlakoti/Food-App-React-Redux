@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserClass from "./UserClass";
+import UserContext from "../utils/UserContext";
 
 class About extends Component {
   constructor(props) {
@@ -45,6 +46,12 @@ async componentDidMount() {
       <div>
         <div className="about-us-container">
           <h1>About Us</h1>
+          <p>Logged In User : 
+            <UserContext.Consumer>
+            {(data)=> data.loggedInUser}
+            </UserContext.Consumer>
+            
+            </p>
           <p>
             Welcome to FoodVillage, your one-stop destination for delicious and
             convenient food delivery. Our mission is to connect people with

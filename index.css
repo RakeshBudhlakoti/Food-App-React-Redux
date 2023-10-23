@@ -564,13 +564,11 @@ ul {
 }
 
 .restaurant-page .menu-item {
-  /* background-color: #f9f9f9; */
   border-bottom: 1px solid #e0e0e0;
-  /* border-radius: 8px; */
-  margin: 2px 0px;
+  margin: 2px 0;
+  padding: 8px 0px 11px 0px;
   display: flex;
   overflow: hidden;
-  padding: 3px 3px 7px 2px;
 }
 
 .restaurant-page .menu-item-image {
@@ -585,21 +583,24 @@ ul {
   margin-left: 11px;
 }
 .strikethrough {
-  text-decoration: line-through;
   color: gray;
   font-weight: normal;
+  text-decoration: line-through;
+  margin-right: 7px;
+  font-size: 12px;
 }
 .menu-item-count {
   width: 124px;
 }
 .restaurant-page .item-name {
-  margin: 8px 0px;
-  font-size: 16px;
+  margin: 8px 0;
+  font-size: 18px;
 }
 
 .restaurant-page .item-description {
-  margin: 4px 0;
-  font-size: 11px;
+  margin: 8px 0;
+  font-size: 14px;
+  color: gray;
 }
 
 .menu-item-details p {
@@ -609,7 +610,7 @@ ul {
 .restaurant-page .item-price {
   color: #ff5733;
   margin: 10px 0;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 900;
 }
 /********************************************************/
@@ -1057,39 +1058,9 @@ span.allDescription {
   font-weight: bold;
 }
 
-.accordion-icon {
-  width: 20px;
-  height: 20px;
-  background-color: #3d9b6d;
-  border-radius: 50%;
+.accordion-button span {
+  font-size: 30px;
 }
-
-.accordion-icon.open::before {
-  content: "-";
-  display: block;
-  font-size: 18px;
-  color: #fff;
-  text-align: center;
-  line-height: 20px;
-}
-
-.accordion-icon.close::before {
-  content: "+";
-  display: block;
-  font-size: 18px;
-  color: #fff;
-  text-align: center;
-  line-height: 20px;
-}
-
-/* .accordion-content {
-  background-color: #fff;
-  border: 1px solid #e9e9eb;
-  box-shadow: 0 1px 5px #f9f9f9;
-  border-radius: 6px;
-  margin-top: 10px;
-  padding: 10px;
-} */
 
 /* Adjust styles as needed */
 
@@ -1267,3 +1238,112 @@ span.bestseller {
 .view-cart-icon {
   margin-left: 10px;
 } */
+
+
+/* App.css */
+
+.appBox {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.appBox .box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appBox .box-content {
+  width: 100%;
+  text-align: center;
+}
+
+.appBox .button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.appBox button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.appBox button:hover {
+  background-color: #0056b3;
+}
+
+.appBox h2 {
+  margin-bottom: 10px;
+}
+
+.appBox input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/** Login */
+
+/* Login.css */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.login-container .login-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.login-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-container button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}

@@ -1,7 +1,8 @@
 import { LOGO_URL } from "../utils/constants";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 function Header() {
   const [btnNameReact, setBtnNameReact] = useState("Login");
@@ -12,16 +13,18 @@ function Header() {
 
   const onlineStatus = useOnlineStatus(); // Custom Hook for online status
 
+  const {loggedInUser} = useContext(UserContext);
+
   return (
-    
     <div className="header">
       <div className="logo-container">
-      <Link to="/"> <img className="logo" src={LOGO_URL} alt="FoodVillage" /> </Link>
+        <Link to="/">
+          {" "}
+          <img className="logo" src={LOGO_URL} alt="FoodVillage" />{" "}
+        </Link>
       </div>
       <div className="nav-items">
-        
         <ul>
-
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -34,11 +37,19 @@ function Header() {
           <li>
             <Link to="/grocery">Grocery</Link>
           </li>
+         
           <li>
+          {
+            !loggedInUser ? <Link to="/login">Login</Link> : <Link to="#">{loggedInUser}</Link>
+          }
+          </li>
+          {/* <li>
             <button className="login" onClick={handleLoginClick}>
               {btnNameReact}
-            </button>{onlineStatus ? <span>&#128994;</span> : <span>&#128308;</span>}
-          </li>
+            </button>
+            {onlineStatus ? <span>&#128994;</span> : <span>&#128308;</span>}
+          </li> */}
+          {/* <li><Link to="#">{loggedInUser}</Link></li> */}
         </ul>
       </div>
     </div>
