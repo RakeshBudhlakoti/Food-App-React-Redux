@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Fire from "./Firecrackers";
+
 const PaymentSuccess = ({ paymentDetails }) => {
   return (
     <div className="payment-container">
@@ -24,6 +26,7 @@ const PaymentSuccess = ({ paymentDetails }) => {
           </Link>
         </div>
       </div>
+      <Fire />
     </div>
   );
 };
