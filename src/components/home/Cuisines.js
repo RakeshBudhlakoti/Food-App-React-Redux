@@ -1,4 +1,4 @@
-const Cuisines = () => {
+const Cuisines = ({addressText}) => {
   return (
     <>
       <div className="res-header">What's on your mind?</div>

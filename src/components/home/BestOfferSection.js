@@ -1,7 +1,7 @@
-const bestOfferSection = () => {
+const bestOfferSection = ({addressText}) => {
   return (
     <>
-      <div className="res-header bestOfferSection">Best offers for you</div>
+      <div className="res-header bestOfferSection">Best offers for you in {addressText}</div>
       <div className="image-row-container">
         <div className="image-item">
           <a aria-label="Flat deals">

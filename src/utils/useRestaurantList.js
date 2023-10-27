@@ -1,21 +1,26 @@
 import { RESTRA_LIST_URL } from "../utils/constants";
 import { useState, useEffect } from "react";
 
-import React from "react";
-const useRestaurantList = () => {
+const useRestaurantList = ({ lat, lng }) => {
   const [resInfo, setResInfo] = useState(null);
 
-  // Fetch data when the component mounts
+  // Use an effect that runs whenever lat or lng change
   useEffect(() => {
-    fetchData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        //console.log("fetching data", lat, lng);
+        const data = await fetch(RESTRA_LIST_URL + 'lat=' + lat + '&lng=' + lng);
+        //console.log("Fetched restaurant");
+        const json = await data.json();
+        setResInfo(json.data);
+      } catch (error) {
+        // Handle errors here
+      }
+    };
 
-  // Function to fetch restaurant data from the API
-  const fetchData = async () => {
-    const data = await fetch(RESTRA_LIST_URL);
-    const json = await data.json();
-    setResInfo(json.data);
-  };
+    fetchData();
+  }, [lat, lng]); // Include lat and lng in the dependency array
+
   return resInfo;
 };
 

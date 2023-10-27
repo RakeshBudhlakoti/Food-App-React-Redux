@@ -6,13 +6,27 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
+import Cart from "./components/Restaurant Detail Page/Cart";
+import PaymentSuccess from "./components/PaymentSuccess";
 //import Grocery from "./components/Grocery";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/Restaurant Detail Page/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import UserContext from "./utils/UserContext";
-
+import { Provider } from "react-redux";
+//import appStore from "./utils/appStore";
 const Grocery = lazy(() => import("./components/Grocery")); // lazy used for use bundle
+
+
+
+
+import { PersistGate } from "redux-persist/integration/react"; // Import PersistGate
+
+import { appStore, persistor } from "./utils/appStore"; // Import appStore and persistor
+// import AppLayout from "./AppLayout"; // Assuming this is your main component
+
+
+
 const AppLayout = () => {
   const [userName, setUserName] = useState();
 
@@ -24,13 +38,18 @@ const AppLayout = () => {
   }, []); // Empty dependency array to run the effect only once
 
   return (
+    <Provider store={appStore}>
+      <PersistGate loading={null} persistor={persistor}>
     <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
       <div className="app">
+     
         <Header />
         <Outlet /> {/* Will be Body,About,contact.... come here */}
         <Footer />
       </div>
     </UserContext.Provider>
+    </PersistGate>
+    </Provider>
   );
 };
 
@@ -64,6 +83,14 @@ const appRouter = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/payment-success",
+        element: <PaymentSuccess />,
+      }
     ],
     errorElement: <Error />,
   },

@@ -5,19 +5,79 @@
 .container {
   max-width: 1400px;
   min-width: 1400px;
-  position: relative;
+  /* position: relative; */
   margin: 0 auto;
   padding-top: -2px;
   background: #fff;
 }
 
 
-
-
-
-.logo-container {
-  display: inline-block;
+.logo-container{
+  display: flex; 
+  align-items: center;
 }
+
+
+.location-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 30px;
+  max-width: 300px;
+  height: 30px;
+  cursor: pointer;
+  margin-bottom: -1px;
+  padding-right: 10px;
+}
+
+.location-title {
+  font-weight: 700;
+  color: #3d4152;
+  float: left;
+}
+
+.location-subtitle {
+  display: block;
+  min-width: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.location-title:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  background: #3d4152;
+}
+
+.location-address {
+  display: block;
+  padding-left: 5px;
+  margin-left: 5px;
+  color: #686b78;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.location-container:hover .location-subtitle {
+  color: #fc8019;
+ 
+}
+
+.location-container:hover .location-title:after {
+  background: #fc8019;
+}
+.location-title, .location-container {
+  position: relative;
+}
+
+
+
 
 .logo {
   width: 50px; /* Set your preferred logo width */
@@ -707,7 +767,7 @@ img.team-card__image {
 }
 
 /* Individual button styling */
-.veg-image, .nonveg-image {
+.veg-nonveg-image{
   height: 14px;
   margin-top: 9px;
 }
@@ -959,7 +1019,7 @@ span.allDescription {
   flex-shrink: 0;
   margin: 1rem;
   transition: transform 0.3s, opacity 0.3s;
-  position: relative;
+  /* position: relative; */
 }
 .image-scroll-container .image-item:hover {
   transform: scale(1.05);
@@ -992,7 +1052,7 @@ span.allDescription {
 .image-row-container .image-item {
   flex-shrink: 0;
   margin-right: 10px; /* Add margin to separate images */
-  position: relative;
+  /* position: relative; */
   transition: transform 0.3s, opacity 0.3s;
 }
 
@@ -1346,4 +1406,467 @@ span.bestseller {
 
 .login-container button:hover {
   background-color: #0056b3;
+}
+
+
+/* ================================================================= cart page =================================================================/
+
+/* CartPage.css */
+.cart-page {
+  background-color: #f7f7f7;
+  justify-content: space-between;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  width: 1100px;
+  margin: 0 auto;
+}
+
+.cart-page .left-block {
+  flex: 8;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* .cart-page .cart-items {
+
+  margin: -10px; 
+}
+
+.cart-page .cart-item {
+  padding: 10px;
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin: 10px; 
+} */
+
+.cart-page .item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.cart-page .item-info {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.cart-page .item-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.cart-page .item-quantity button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.cart-page .right-block {
+  flex: 4;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-page .restaurant-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #007BFF;
+}
+
+.cart-page .restaurant-name {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-page .order-summary {
+  margin-top: 20px;
+}
+
+.cart-page .total-price, .gst-price, .delivery-charge, .grand-total {
+  margin: 10px 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-page .checkout-button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #fc8019;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 30px;
+  font-size: 18px;
+  width: 100%;
+  margin-top: 46px;
+}
+
+._10-lm {
+  height: calc(100vh - 80px);
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+}
+._3a391 {
+  width: 271px;
+  height: 256px;
+  background-image: url("https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+}
+._3Y9ZP {
+  margin-top: 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #535665;
+}
+.d7jCU {
+  margin-top: 8px;
+  color: #7e808c;
+}
+.cart-page ._3pgCg {
+    margin-top: 30px;
+    padding: 11px 20px;
+    text-transform: uppercase;
+    background-color: #fc8019;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    font-size: 15px;
+    text-align: center;
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    transition: transform .8s cubic-bezier(.2,1,.2,1);
+
+}
+
+.cart-count {
+  color: #fff;
+  background-color: #fc8019;
+  border-radius: 24px;
+  padding: 2px 7px;
+  font-size: 16px;
+  position: relative;
+  top: -13px;
+  right: 4px;
+}
+i.fa.fa-shopping-cart {
+  font-size: 22px;
+}
+._3pgCg a {
+  color: white;
+  text-decoration: none;
+}
+
+
+.order-summary {
+  text-align: center;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 400px;
+  float: right;
+}
+
+/* Style for each paragraph (total price, GST, etc.) */
+.order-summary p {
+  margin: 0;
+  font-size: 16px;
+  padding: 5px 0;
+}
+
+/* Styling for the Checkout button */
+.checkout-button {
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+  background-color: #0055aa;
+}
+p.grand-total {
+  font-size: 26px;
+  border-top: 4px solid gray;
+  margin-top: 12px;
+}
+
+
+/* Style the cart items table */
+.cart-items {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+/* Style table header row */
+.cart-items thead {
+  background-color: #333;
+  color: #fff;
+}
+
+.cart-items th, .cart-items td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style even and odd rows for better readability */
+.cart-items tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style the item image */
+.cart-items .item-image {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Center align the text in the "Quantity," "Price (₹)," and "Total (₹)" columns */
+/* .cart-items td:nth-child(2), .cart-items td:nth-child(3), .cart-items td:nth-child(4) {
+  text-align: center;
+} */
+
+/* Style the currency symbol */
+/* .cart-items td:nth-child(3)::before,
+.cart-items td:nth-child(4)::before {
+  content: "₹";
+} */
+
+/* Add some spacing to the rows */
+.cart-items tr {
+  margin: 10px 0;
+}
+
+/* Add a border around the table */
+.cart-items {
+  border: 1px solid #ddd;
+}
+
+/* Hover effect on rows */
+.cart-items tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Sidebar*/
+
+
+
+.sidepanel {
+  z-index: 1;
+  background-color: #f0f0f0;
+  width: 0;
+  height: 250px;
+  padding-top: 60px;
+  transition: all .5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  box-shadow: 2px 7px 15px 6px gray;
+}
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+/* Add styles to open the sidepanel */
+.sidepanel.open {
+  width: 710px;
+  height: 100vh;
+}
+input.search-location {
+  color: #000;
+  border-radius: 5px;
+  width: 100%;
+  padding: 17px;
+  font-size: 16px;
+  border: 0px;
+  box-shadow: 0px 1px 6px 1px gray;
+}
+.location-wrapper {
+  width: 85%;
+  margin: 0 auto;
+}
+
+
+.overlay {
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #282c3f;
+  opacity: .7;
+  overflow: hidden;
+}
+
+.current-location-current {
+  color: #000;
+  margin-top: 20px;
+  padding: 0 12px;
+  display: flex;
+  box-shadow: 0 1px 6px 1px gray;
+}
+
+.current-location {
+  color: #000;
+  margin-top: 0px;
+  padding: 0 12px;
+  display: flex;
+  border-bottom: 1px dashed gray;
+}
+.current-location-detail {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.current-location-icon {
+  align-items: center;
+  font-size: 27px;
+  display: flex;
+  width: 25px;
+}
+span.current-location-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.current-location:hover,.current-location-current:hover {
+  background-color: orange;
+  cursor: pointer;
+}
+
+
+
+.payment-container {
+  background-color: #f3f4f6;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-container .content {
+  background-color: #fff;
+  padding: 4rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  width: 800px;
+
+}
+
+.payment-container .icon {
+  font-size: 11rem;
+  color: #48bb78; /* Green color */
+  margin-bottom: 1rem;
+}
+
+.payment-container .heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333; /* Grayish text color */
+  margin: 10px 0;
+}
+
+.payment-container .text {
+  font-size: 1rem;
+  color: #666; /* Light gray text color */
+  margin: 10px 0;
+}
+
+.payment-container .order-details {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.payment-container .button {
+  width: 233px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.payment-container .btn {
+  color: #fff;
+  background-color: #6574cd;
+  border-radius: 4px;
+  padding: 10px 24px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color .2s;
+  text-align: center;
+  display: block;
+}
+
+.payment-container .btn:hover {
+  background-color: #5668b7; /* Darker indigo on hover */
 }

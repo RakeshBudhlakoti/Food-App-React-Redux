@@ -4,12 +4,24 @@ import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import BestOfferSection from "./home/BestOfferSection";
 import useRestaurantList from "../utils/useRestaurantList";
+
 import Cuisines from "./home/Cuisines";
+import { useSelector,useDispatch } from "react-redux";
+
 
 const Body = () => {
-  const resInfo = useRestaurantList();
+  const dispatch = useDispatch();
+  let areaLatLng = useSelector((store) => store.latLng.coordinates); // redux
+  let address = useSelector((store) => store.latLng.address); // redux
+
+
+
+  const latlong = { lat: areaLatLng.length>0?areaLatLng[0].lat:26.8289443, lng: areaLatLng.length>0?areaLatLng[0].lng:75.8056178 };
 
   // Local State Variables
+
+  const resInfo = useRestaurantList(latlong);
+
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [listOfFilteredRestaurants, setListOfFilteredRestaurants] = useState(
     []
@@ -41,10 +53,10 @@ const Body = () => {
   };
 
   // Function to handle filtering restaurants with a rating of 4+
- 
+
   const handleFilters = (type) => {
     let filteredList = [];
-  
+
     if (type === "rating4+") {
       filteredList = listOfRestaurants.filter((res) => res.info.avgRating >= 4);
     } else if (type === "fast-delivery") {
@@ -68,7 +80,7 @@ const Body = () => {
     }
     setListOfFilteredRestaurants(filteredList);
   };
-  
+
   const onlineStatus = useOnlineStatus(); // check if online status ot Internat Available or NOT
 
   if (onlineStatus === false)
@@ -83,10 +95,12 @@ const Body = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <BestOfferSection /> {/* Best Offer Section */}
-            <Cuisines /> {/* Cuisines Section */}
+            <BestOfferSection addressText={address.length>0 ? address[0].main_text:''} />
+            {/* Best Offer Section */}
+            <Cuisines addressText={address.length>0 ? address[0].main_text : ''} />
+            {/* Cuisines Section */}
             <div className="res-header">
-              Restaurants with online food delivery near you!
+              Restaurants with online food delivery in {address.length>0 ? address[0].main_text:''}!
             </div>
             <div className="Search">
               <div className="example">
