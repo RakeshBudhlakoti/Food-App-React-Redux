@@ -8,7 +8,7 @@ const PayPalButton = ({ totalAmount, onSuccess }) => {
   const handleApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
       setPaymentDetails(details);
-      console.log("Payment-Details", details);
+      
       if (details.status === "COMPLETED") {
         // Call the onSuccess callback to handle redirection
         onSuccess(details);
