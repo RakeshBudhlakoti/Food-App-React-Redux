@@ -63,7 +63,7 @@ Food Village incorporates several cutting-edge technologies and best practices, 
 [![Video Title](https://drive.google.com/uc?export=view&id=1VD_0r9Ilf3lVZPWR7aEFSO74F53lP-pd)](https://www.youtube.com/watch?v=Rvl4T9cqTHE)
 
 - **GitHub Repository:** [GitHub](https://github.com/RakeshBudhlakoti/Food-App-React-Redux)
-- **App Preview:** [View Food Village](https://rbk-food-app.vercel.app/)
+- **Live Preview:** [View Food Village](https://rbk-food-app.vercel.app/)
 
 Explore the project's code and experience Food Village in action through the provided links.
 
