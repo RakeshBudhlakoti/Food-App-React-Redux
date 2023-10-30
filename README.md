@@ -1,5 +1,3 @@
-Certainly, here's a README for your GitHub repository:
-
 # Food Village - Swiggy-inspired Web Application
 
 Food Village is a web application that draws inspiration from Swiggy, a popular food delivery service. It is built using cutting-edge technology and offers a delightful user experience for ordering food from various restaurants. This README provides an overview of the project's features, tech stack, and highlights.
